@@ -17,7 +17,9 @@ async function requestDevice() {
     const _options = { filters: [{ services: ["device_information"] }] };
 
     const options = {
-        acceptAllDevices: true,
+        filters: [{
+            namePrefix: "M"  // 只過濾名稱以 "MyDevice" 開頭的設備
+        }],
         optionalServices: ["device_information"],
     };
     device = await navigator.bluetooth.requestDevice(options);
