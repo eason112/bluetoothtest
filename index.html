@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>test</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+            }
+            button {
+                color: #fff;
+                margin: 10px;
+                outline: none;
+                cursor: pointer;
+                font-size: 30px;
+                background: #444;
+                padding: 10px 20px;
+                border-color: #444;
+                border-radius: 1vh;
+            }
+            .hide {
+                display: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="connect-ui">
+            <button class="connect">connect</button>
+            <div class="error hide">
+                ⚠️ This browser does not support the Web Bluetooth API. Please try a
+                different browser
+            </div>
+        </div>
+        <div class="ui hide">
+            <div class="capacitance">
+                <div class="data">--</div>
+            </div>
+            <button class="start">start</button>
+            <button class="stop">stop</button>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
