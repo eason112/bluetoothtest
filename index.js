@@ -22,8 +22,16 @@ async function requestDevice() {
         }],
         optionalServices: ["device_information"],
     };
-    device = await navigator.bluetooth.requestDevice(options);
-    device.addEventListener("gattserverdisconnected", connectDevice);
+    //device = await navigator.bluetooth.requestDevice(options);
+    device = await navigator.bluetooth.getDevices();
+    if (device.length === 0) {
+      console.log('No Bluetooth devices found.');
+      return;
+    }
+    device.forEach(device => {
+      console.log(`Device Name: ${device.name}, Device ID: ${device.id}`);
+    });
+    //device.addEventListener("gattserverdisconnected", connectDevice);
 }
 
 async function connectDevice() {
@@ -52,3 +60,20 @@ async function init() {
 
 
 connectBTN.addEventListener("click", init);
+
+
+const originalConsoleLog = console.log;
+const consoleOutputDiv = document.getElementById('consoleOutput');
+
+console.log = function(message) {
+            // 呼叫原始的 console.log
+    originalConsoleLog(message);
+
+            // 在網頁上顯示
+    const logMessage = document.createElement('div');
+    logMessage.textContent = message;
+    consoleOutputDiv.appendChild(logMessage);
+
+            // 滾動到底部
+    consoleOutputDiv.scrollTop = consoleOutputDiv.scrollHeight;
+};
